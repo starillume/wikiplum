@@ -1,2 +1,0 @@
-# foam-file-format
-
