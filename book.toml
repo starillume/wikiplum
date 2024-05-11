@@ -1,0 +1,21 @@
+[book]
+authors = ["sawurora", "eki"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Wikiplum"
+
+[preprocessor]
+
+[preprocessor.pagetoc]
+
+[preprocessor.infobox]
+
+[output]
+
+[output.html]
+additional-css = ["theme/infobox.css", "theme/pagetoc.css"]
+additional-js  = ["theme/pagetoc.js"]
+
+[output.html.search]
+enable = true
