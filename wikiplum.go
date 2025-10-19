@@ -25,6 +25,7 @@ type PageData struct {
 	Title   string
 	HTML    template.HTML
 	Sidebar []NavItem
+	Rel     string
 }
 
 type NavItem struct {
@@ -77,10 +78,16 @@ func buildPages(tmpl *template.Template) error {
 			return err
 		}
 
+		rel, err := filepath.Rel(path, ContentPath)
+		if err != nil {
+			return err
+		}
+
 		data := PageData{
 			Title:   filepath.Base(strings.TrimSuffix(path, ".md")),
 			HTML:    template.HTML(html),
-			Sidebar: generateSidebar(ContentPath),
+			Sidebar: generateSidebar(ContentPath, path),
+			Rel:     rel,
 		}
 
 		return writePage(outPath, tmpl, data)
@@ -90,7 +97,7 @@ func buildPages(tmpl *template.Template) error {
 func outputPath(mdPath string) string {
 	rel, _ := filepath.Rel(ContentPath, mdPath)
 	rel = strings.TrimSuffix(rel, ".md")
-	return filepath.Join(BuildPath, rel + ".html")
+	return filepath.Join(BuildPath, rel+".html")
 }
 
 func mdLinkToHTML(md []byte) []byte {
@@ -102,7 +109,7 @@ func renderMarkdown(mdPath string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	
+
 	var html strings.Builder
 	if err := goldmark.Convert(mdLinkToHTML(md), &html); err != nil {
 		return "", err
@@ -156,19 +163,30 @@ func copyFile(src string, dst string) error {
 	return err
 }
 
-func generateSidebar(root string) []NavItem {
-	var items []NavItem
-	filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
-		if err != nil || d.IsDir() || strings.Contains(path, RootPage) || !strings.HasSuffix(path, ".md") {
-			return err
-		}
-		rel := strings.TrimPrefix(path, root)
-		link := strings.TrimSuffix(rel, ".md")
-		items = append(items, NavItem{
-			Title: filepath.Base(link),
-			Link:  link + ".html",
-		})
-		return nil
-	})
-	return items
+func generateSidebar(root string, currentPath string) []NavItem {
+    var items []NavItem
+    filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
+        if err != nil || d.IsDir() || strings.Contains(path, RootPage) || !strings.HasSuffix(path, ".md") {
+            return err
+        }
+
+        relRoot, _ := filepath.Rel(filepath.Dir(currentPath), root)
+        rel, _ := filepath.Rel(root, path)
+
+        var link string
+        if relRoot == "." {
+            link = rel
+        } else {
+            link = filepath.Join(relRoot, rel)
+        }
+
+        link = strings.TrimSuffix(link, ".md")
+
+        items = append(items, NavItem{
+            Title: filepath.Base(link),
+            Link:  link + ".html",
+        })
+        return nil
+    })
+    return items
 }

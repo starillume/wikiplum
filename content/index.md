@@ -1,4 +1,4 @@
-[Wikiplum](/.md)
+[Wikiplum]()
 
 - [Locais]()
     - [Plum Principality](locais/plum-principality.md)
