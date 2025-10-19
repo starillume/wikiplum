@@ -78,7 +78,7 @@ func buildPages(tmpl *template.Template) error {
 			return err
 		}
 
-		rel, err := filepath.Rel(path, ContentPath)
+		rel, err := filepath.Rel(filepath.Dir(path), ContentPath)
 		if err != nil {
 			return err
 		}
