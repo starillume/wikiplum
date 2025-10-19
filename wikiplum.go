@@ -24,8 +24,13 @@ const (
 type PageData struct {
 	Title   string
 	HTML    template.HTML
-	Sidebar []NavItem
+	Sidebar Sidebar
 	Rel     string
+}
+
+type Sidebar struct {
+	Home  string
+	Items []NavItem
 }
 
 type NavItem struct {
@@ -83,10 +88,15 @@ func buildPages(tmpl *template.Template) error {
 			return err
 		}
 
+		sidebar := Sidebar{
+			Home: rel + "/index.html",
+			Items: generateSidebarItems(ContentPath, path),
+		}
+
 		data := PageData{
 			Title:   filepath.Base(strings.TrimSuffix(path, ".md")),
 			HTML:    template.HTML(html),
-			Sidebar: generateSidebar(ContentPath, path),
+			Sidebar: sidebar,
 			Rel:     rel,
 		}
 
@@ -163,30 +173,30 @@ func copyFile(src string, dst string) error {
 	return err
 }
 
-func generateSidebar(root string, currentPath string) []NavItem {
-    var items []NavItem
-    filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
-        if err != nil || d.IsDir() || strings.Contains(path, RootPage) || !strings.HasSuffix(path, ".md") {
-            return err
-        }
+func generateSidebarItems(root string, currentPath string) []NavItem {
+	var items []NavItem
+	filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
+		if err != nil || d.IsDir() || strings.Contains(path, RootPage) || !strings.HasSuffix(path, ".md") {
+			return err
+		}
 
-        relRoot, _ := filepath.Rel(filepath.Dir(currentPath), root)
-        rel, _ := filepath.Rel(root, path)
+		relRoot, _ := filepath.Rel(filepath.Dir(currentPath), root)
+		rel, _ := filepath.Rel(root, path)
 
-        var link string
-        if relRoot == "." {
-            link = rel
-        } else {
-            link = filepath.Join(relRoot, rel)
-        }
+		var link string
+		if relRoot == "." {
+			link = rel
+		} else {
+			link = filepath.Join(relRoot, rel)
+		}
 
-        link = strings.TrimSuffix(link, ".md")
+		link = strings.TrimSuffix(link, ".md")
 
-        items = append(items, NavItem{
-            Title: filepath.Base(link),
-            Link:  link + ".html",
-        })
-        return nil
-    })
-    return items
+		items = append(items, NavItem{
+			Title: filepath.Base(link),
+			Link:  link + ".html",
+		})
+		return nil
+	})
+	return items
 }
