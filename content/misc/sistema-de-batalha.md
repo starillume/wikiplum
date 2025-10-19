@@ -15,7 +15,7 @@
 - **Arcanismo**: Determina a diminuição do tempo de recarga dos feitiços do personagem. 
 - **Adestramento**: Determina a quantidade adicional de atributos do [Pet](pet.md).
 - **Ímpeto**: Determina a quantidade adicional de velocidade de ataque do personagem.
-- **Reflexo**: Determina a diminuição do tempo de recarga do [Defletir](#defletir) do personagem.
+- **Reflexo**: Determina a diminuição do tempo de recarga do [Defletir](#defletir.md) do personagem.
 
 ## Defletir
 <!-- TODO!! -->

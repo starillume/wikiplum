@@ -1,6 +1,4 @@
-# Summary
-
-[Wikiplum](./README.md)
+[Wikiplum](/.md)
 
 - [Locais]()
     - [Plum Principality](locais/plum-principality.md)

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Title }} | Wikiplum</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="sidebar">
+    <h2><a href="/">Wikiplum</a></h2>
+    <ul>
+        {{ range .Sidebar }}
+        <li><a href="{{ .Link }}">{{ .Title }}</a></li>
+        {{ end }}
+    </ul>
+</div>
+<div class="content">
+    {{ template "content" . }}
+</div>
+</body>
+</html>
+
