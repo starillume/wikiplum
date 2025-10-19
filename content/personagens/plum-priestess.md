@@ -25,4 +25,4 @@ Mesmo com as habilidades de [Plum Priestess](plum-priestess.md), curar o homem m
 
 ## Nascimento de [Sunshine](sunshine.md) e abdicação a sucessão
 
-Anos depois, [Atlas](atlas.md) e [Plum Priestess](plum-priestess.md.md) tiveram uma filha: [Sunshine](sunshine.md). Sunshine demonstrou poderes mágicos muito cedo (ver [Nascimento da Sunshine](luna.md#nascimento-da-sunshine)), o que levou a [Plum Priestess](plum-priestess.md) abdicar a sucessão e entregar [Sunshine](sunshine.md) a [Ariel](ariel.md) (ver [Abandono e vida com a Ariel](sunshine.md#abandono-e-vida-com-a-ariel))
+Anos depois, [Atlas](atlas.md) e [Plum Priestess](plum-priestess.md) tiveram uma filha: [Sunshine](sunshine.md). Sunshine demonstrou poderes mágicos muito cedo (ver [Nascimento da Sunshine](luna.md#nascimento-da-sunshine)), o que levou a [Plum Priestess](plum-priestess.md) abdicar a sucessão e entregar [Sunshine](sunshine.md) a [Ariel](ariel.md) (ver [Abandono e vida com a Ariel](sunshine.md#abandono-e-vida-com-a-ariel))

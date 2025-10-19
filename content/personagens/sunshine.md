@@ -1,3 +1,8 @@
+---
+name: Sunshine
+age: 19
+nickname: Sun
+---
 # Sunshine
 
 {{#infobox}}
