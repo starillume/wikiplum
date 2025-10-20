@@ -48,7 +48,16 @@ body {
 }
 
 .sidebar > h2 {
-    color: #58a6ff;
+    text-align: center;
+}
+
+.sidebar > h2 a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.sidebar > h2 a:hover {
+    color: var(--color-accent-hover);
 }
 
 .sidebar > .items {
