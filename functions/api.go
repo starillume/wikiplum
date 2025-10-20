@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/syumai/workers"
 	"gopkg.in/yaml.v3"
 )
 
@@ -32,7 +33,6 @@ func apiHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(fm)
 }
 
-
 // frontmatter is the yaml metadata in the beginning of md files
 func parseFrontmatter(md []byte) map[string]string {
 	content := strings.TrimSpace(string(md))
@@ -55,3 +55,7 @@ func parseFrontmatter(md []byte) map[string]string {
 	return fm
 }
 
+func main() {
+	http.Handle("/", http.HandlerFunc(apiHandler))
+	workers.Serve(nil)
+}
