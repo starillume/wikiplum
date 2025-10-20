@@ -1,0 +1,32 @@
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: setup go
+        uses: actions/setup-go@v4
+
+      - name: setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: install packages
+        working-directory: functions
+        run: |
+          npm i -g wrangler
+          npm ci
+
+      - name: deploy worker
+        working-directory: functions
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npm run deploy
+
