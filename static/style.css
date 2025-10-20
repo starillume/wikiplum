@@ -1,18 +1,24 @@
 body {
     margin: 0;
+    height: 100vh;
     font-family: sans-serif;
     background-color: #0d1117;
     color: #c9d1d9;
+}
+
+.page {
     display: flex;
+    height: 100%;
 }
 
 .sidebar {
     width: 260px;
-    background-color: #161b22;
+    height: 100%;
     padding: 20px;
-    height: 100vh;
+    background-color: #161b22;
     overflow-y: auto;
     box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    box-sizing: border-box;
 }
 
 .sidebar h2 {
@@ -30,8 +36,11 @@ body {
 
 .content {
     flex: 1;
-    padding: 40px;
     max-width: 900px;
+    height: inherit;
+    padding: 40px;
     margin: auto;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
