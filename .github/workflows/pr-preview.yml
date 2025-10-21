@@ -6,6 +6,9 @@ concurrency: preview-${{ github.ref }}
 jobs:
   preview:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -21,3 +24,4 @@ jobs:
         with:
           source-dir: ./build
           preview-branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
