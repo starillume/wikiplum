@@ -1,0 +1,125 @@
+:root {
+    --color-bg: #0d1117;
+    --color-bg-secondary: #161b22;
+    --color-bg-hover: #21262d;
+    --color-bg-active: #30363d;
+
+    --color-fg: #c9d1d9;
+    --color-fg-secondary: #161b22;
+    --color-fg-hover: #161b22;
+    --color-fg-active: #161b22;
+    --color-fg-muted: #8b949e;
+    --color-fg-strong: #f0f6fc;
+
+    --color-border: #30363d;
+    --color-shadow: rgba(0, 0, 0, 0.2);
+
+    --color-accent: #58a6ff;
+    --color-accent-hover: #79c0ff;
+    --color-accent-visited: #0058a6;
+    --color-accent-active: #1f6feb;
+}
+
+/* @media (prefers-color-scheme: dark) { */
+/*   :root { */
+/*   } */
+/* } */
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 260px;
+    height: 100%;
+    padding: 20px;
+    background-color: var(--color-bg-secondary);
+    overflow-y: auto;
+    box-shadow: 2px 0 8px var(--color-shadow);
+    box-sizing: border-box;
+}
+
+.sidebar > h2 {
+    text-align: center;
+}
+
+.sidebar > h2 a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.sidebar > h2 a:hover {
+    color: var(--color-accent-hover);
+}
+
+.sidebar > .items {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    list-style-type: none;
+}
+
+.sidebar > .items > .item {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    height: 30px;
+    padding: 2px 8px;
+}
+
+.sidebar > .items > .item:hover {
+    background-color: var(--color-bg-hover);
+}
+
+.sidebar > .items > .item:hover > a {
+    color: var(--color-accent-hover);
+}
+
+.sidebar > .items > .item a {
+    display: block;
+    width: 100%;
+    color: var(--color-fg);
+    text-decoration: none;
+}
+
+.page {
+    flex: 1;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.page a {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.page a:hover {
+  color: var(--color-accent-hover);
+}
+
+.page a:visited {
+  color: var(--color-accent-visited);
+}
+
+.page a:active {
+  color: var(--color-accent-active);
+}
+
+.page > .content {
+    max-width: 900px;
+    height: inherit;
+    padding: 40px;
+    margin: auto;
+}
