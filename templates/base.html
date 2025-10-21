@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{{ .Rel }}/static/style.css">
     </head>
     <body>
-        <div class="page">
+        <div class="container">
             <div class="sidebar">
                 <h2><a href="{{ .Sidebar.Home }}">Wikiplum</a></h2>
                 <ul class="items">
@@ -15,8 +15,10 @@
                     {{ end }}
                 </ul>
             </div>
-            <div class="content">
-                {{ template "content" . }}
+            <div class="page">
+                <div class="content">
+                    {{ template "content" . }}
+                </div>
             </div>
         </div>
     </body>

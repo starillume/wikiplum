@@ -16,6 +16,7 @@
 
     --color-accent: #58a6ff;
     --color-accent-hover: #79c0ff;
+    --color-accent-visited: #0058a6;
     --color-accent-active: #1f6feb;
 }
 
@@ -32,7 +33,7 @@ body {
     color: var(--color-fg);
 }
 
-.page {
+.container {
     display: flex;
     height: 100%;
 }
@@ -90,13 +91,35 @@ body {
     text-decoration: none;
 }
 
-.content {
+.page {
     flex: 1;
-    max-width: 900px;
-    height: inherit;
-    padding: 40px;
-    margin: auto;
     overflow-y: auto;
     box-sizing: border-box;
 }
 
+.page a {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.page a:hover {
+  color: var(--color-accent-hover);
+}
+
+.page a:visited {
+  color: var(--color-accent-visited);
+}
+
+.page a:active {
+  color: var(--color-accent-active);
+}
+
+.page > .content {
+    max-width: 900px;
+    height: inherit;
+    padding: 40px;
+    margin: auto;
+}
