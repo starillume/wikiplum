@@ -7,6 +7,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"github.com/yuin/goldmark"
@@ -89,7 +90,7 @@ func buildPages(tmpl *template.Template) error {
 		}
 
 		sidebar := Sidebar{
-			Home: rel + "/index.html",
+			Home:  rel + "/index.html",
 			Items: generateSidebarItems(ContentPath, path),
 		}
 
@@ -120,11 +121,19 @@ func renderMarkdown(mdPath string) (string, error) {
 		return "", err
 	}
 
+	md = []byte(removeMetadataFromMd(string(md)))
+
 	var html strings.Builder
 	if err := goldmark.Convert(mdLinkToHTML(md), &html); err != nil {
 		return "", err
 	}
 	return html.String(), nil
+}
+
+func removeMetadataFromMd(md string) string {
+	re := regexp.MustCompile(`(?s)^---.*---\n`)
+
+	return re.ReplaceAllString(md, "")
 }
 
 func writePage(outPath string, tmpl *template.Template, data PageData) error {
