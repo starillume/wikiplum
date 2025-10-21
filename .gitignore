@@ -2,3 +2,4 @@ build
 wikiplum
 node_modules/
 .wrangler/
+.nvim_config.json
