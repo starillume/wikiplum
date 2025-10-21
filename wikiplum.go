@@ -94,8 +94,16 @@ func buildPages(tmpl *template.Template) error {
 			Items: generateSidebarItems(ContentPath, path),
 		}
 
+		var title string
+
+		if path == "content/index.md" {
+			title = "Wikiplum"
+		} else {
+			title = filepath.Base(strings.TrimSuffix(path, ".md")) + " | Wikiplum"
+		}
+
 		data := PageData{
-			Title:   filepath.Base(strings.TrimSuffix(path, ".md")),
+			Title:   title,
 			HTML:    template.HTML(html),
 			Sidebar: sidebar,
 			Rel:     rel,
