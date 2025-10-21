@@ -1,0 +1,23 @@
+on:
+  pull_request:
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup go
+        uses: actions/setup-go@v4
+
+      - name: build
+        run: go run .
+      
+      - name: deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./build
+          preview-branch: gh-pages
