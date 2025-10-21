@@ -97,9 +97,9 @@ func buildPages(tmpl *template.Template) error {
 		var title string
 
 		if path == fmt.Sprintf("%s/%s.md", ContentPath, RootPage) {
-			title = "Wikiplum"
+			title = "wikiplum"
 		} else {
-			title = filepath.Base(strings.TrimSuffix(path, ".md")) + " | Wikiplum"
+			title = filepath.Base(strings.TrimSuffix(path, ".md")) + " | wikiplum"
 		}
 
 		data := PageData{
